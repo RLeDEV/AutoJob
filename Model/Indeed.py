@@ -28,7 +28,6 @@ class Indeed(Website):
                 if "Student" in description.text or "student" in description.text:
                     job = Job(description.text, link, company.text)
                     final_jobs.append(job)
-                    job.print_job()
 
             self._jobs = final_jobs
             return final_jobs

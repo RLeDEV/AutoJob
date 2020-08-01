@@ -30,7 +30,6 @@ class Glassdoor(Website):
                 if ("Student" in description or "student" in description):
                     job = Job(description, link, company)
                     final_jobs.append(job)
-                    job.print_job()
 
             self._jobs = final_jobs
             return final_jobs
