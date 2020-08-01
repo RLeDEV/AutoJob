@@ -1,6 +1,7 @@
 import yaml
 
 from Controller.ChooseFactory import WebChooser
+from Driver.MailDriver import Mailer
 from Driver.Mongo import Driver
 
 
@@ -45,6 +46,7 @@ class Manage():
             for job in jobs:
                 if self.is_job_exist(job, collection) is False:
                     self.add_new_job(job, collection)
+                    Mailer().send_email(job, type)
         except Exception as e:
             print('An error occurred when tried to add a new website')
 
