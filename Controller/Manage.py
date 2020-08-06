@@ -42,13 +42,17 @@ class Manage():
             website.get_jobs()
             jobs = website.get_all_jobs()
             self._websites.append(website)
+            mail_driver = Mailer().server
             # Looping through all found jobs and check if already exist in the database
             for job in jobs:
                 if self.is_job_exist(job, collection) is False:
                     self.add_new_job(job, collection)
-                    Mailer().send_email(job, type)
+                    Mailer().send_email(job, type, mail_driver)
+                job.print_job()
+            mail_driver.close()
         except Exception as e:
             print('An error occurred when tried to add a new website')
+            print(e)
 
     def is_job_exist(self, job, collection):
         try:
@@ -69,7 +73,7 @@ class Manage():
                        "Company": job.get_company(),
                        "Link": job.get_link()}
             collection.insert_one(jobDict)
-            job.print_job()
+            print("NEW!!")
             self._all_jobs.append(job)
             self._num_of_jobs += 1
         except Exception as e:
