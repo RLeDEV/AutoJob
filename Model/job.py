@@ -23,4 +23,4 @@ class Job:
         self._company = company
 
     def print_job(self):
-        print("A new job: " + self.get_description() + "\nCompany: " + self.get_company() + '\nLink: ' +self.get_link())
+        print("Description: " + self.get_description() + "\nCompany: " + self.get_company() + '\nLink: ' +self.get_link())
